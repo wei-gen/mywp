@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="inject">
-      <UniqueIdentifier>{b095bbcc-34fb-449f-975b-5e2d51958f12}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -31,7 +28,7 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="RemoteInjector.h">
-      <Filter>inject</Filter>
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -39,7 +36,7 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="RemoteInjector.cpp">
-      <Filter>inject</Filter>
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

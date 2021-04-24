@@ -9,12 +9,10 @@ class RemoteInjector
 public:
 	//目标进程PID
 	DWORD targetProcPID = 0;
-	char cDllPath[250];
+	string strDllPath;
 	//获取进程句柄，提升权限
-	int enableDebugPriv(const char* name);
+	int EnableDebugPriv(const char* name);
 	//执行远程注入
 	int remoteInjection(const DWORD PID);
-	void setcDllPath(string path);
-	void setTargetProcPID(long pid);
 
 };

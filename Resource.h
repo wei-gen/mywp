@@ -15,16 +15,6 @@
 #define IDC_MYICON				2
 #ifndef IDC_STATIC
 #define IDC_STATIC				-1
-
-
-
-// 自加的组件ID
-#define IDC_BUTTON_REMOTE_INJECTOR		188
-
-
-
-
-
 #endif
 // 新对象的下一组默认值
 //

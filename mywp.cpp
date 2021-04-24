@@ -125,16 +125,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
-    case WM_CREATE:
-        {
-        CreateWindow(TEXT("button"),
-            TEXT("远程注入"),
-            WS_CHILD | WS_VISIBLE,
-            CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
-            hWnd, (HMENU)IDC_BUTTON_REMOTE_INJECTOR,
-            ((LPCREATESTRUCT)lParam)->hInstance, NULL);
-        }
-        break;
     case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);
