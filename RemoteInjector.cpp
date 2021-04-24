@@ -1,6 +1,6 @@
 #include "RemoteInjector.h"
 
-int RemoteInjector::enableDebugPriv(const char* name)
+int RemoteInjector::EnableDebugPriv(const char* name)
 {
     HANDLE hToken;
     TOKEN_PRIVILEGES tp;
@@ -23,9 +23,11 @@ int RemoteInjector::remoteInjection(const DWORD PID)
     HANDLE hRemoteProcess;
     HANDLE hRemoteThread;
     char* pszLibFileRemote;
+    // dllÂ·¾¶Ö¸Õë
+    const char* cDllPath = strDllPath.data();
+    printf("DEFAULT DLL PATH: %s\n", cDllPath);
 
-
-    if (!enableDebugPriv((const char*)SE_DEBUG_NAME)) {
+    if (!EnableDebugPriv((const char*)SE_DEBUG_NAME)) {
         cout << "* FAIL TO: Get SEDEBUG privilege" << endl;
         return 0;
     }
@@ -45,7 +47,7 @@ int RemoteInjector::remoteInjection(const DWORD PID)
         return 0;
     }
 
-    pszLibFileRemote = (char*)VirtualAllocEx(hRemoteProcess, NULL, strlen(this->cDllPath) + 10, MEM_COMMIT, PAGE_READWRITE);
+    pszLibFileRemote = (char*)VirtualAllocEx(hRemoteProcess, NULL, strlen(cDllPath) + 10, MEM_COMMIT, PAGE_READWRITE);
     if (pszLibFileRemote) {
         cout << "* SUCCESS TO: Allocate remote memory space" << endl;
         printf("Remote addr: 0x%p\n", (long long)pszLibFileRemote);
@@ -55,7 +57,7 @@ int RemoteInjector::remoteInjection(const DWORD PID)
         return 0;
     }
 
-    if (WriteProcessMemory(hRemoteProcess, pszLibFileRemote, (void*)this->cDllPath, strlen(this->cDllPath) + 10, NULL)) {
+    if (WriteProcessMemory(hRemoteProcess, pszLibFileRemote, (void*)cDllPath, strlen(cDllPath) + 10, NULL)) {
         cout << "* SUCCESS TO: Write memory" << endl;
     }
     else {
@@ -88,21 +90,3 @@ int RemoteInjector::remoteInjection(const DWORD PID)
     CloseHandle(hRemoteThread);
     return 1;
 }
-
-void RemoteInjector::setcDllPath(string path)
-{
-    int len = path.length();
-    if (len + 1 > 250) {
-        return;
-    }
-    strcpy_s(this->cDllPath,250, path.data());
-}
-
-
-
-
-void RemoteInjector::setTargetProcPID(long pid)
-{
-    this->targetProcPID = pid;
-}
-
